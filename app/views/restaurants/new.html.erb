@@ -1,0 +1,11 @@
+<h1>Créer un nouveau restaurant</h1>
+
+<%= link_to 'Retour à la liste des restaurants' ,restaurants_path %>
+
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :category, as: :radio_buttons, collection: ["chinese", "italian", "japanese", "french", "belgian"], wrapper: :vertical_collection_inline %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>

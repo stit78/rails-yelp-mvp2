@@ -1,0 +1,30 @@
+<h1>Détail du restaurant</h1>
+
+<p><%= @restaurant.name.capitalize %></p>
+<p> <%= @restaurant.address.capitalize %></p>
+<p> <%= @restaurant.category.capitalize %> </p>
+<% if @restaurant.phone_number %>
+  <p> Appeler au <%= @restaurant.phone_number %></p>
+<% end %>
+
+<%= link_to 'Retour à la liste des restaurants', restaurants_path %>
+
+<br>
+<br>
+<br>
+<h2> Revues </h2>
+<% if @restaurant.reviews.count > 0 %>
+  <h3> Voici les critiques du restaurant</h3>
+  <ul>
+    <% @restaurant.reviews.all.each do |review| %>
+      <li>
+        <p> <%= review.content %> </p>
+        <p> <%= review.rating %>  </p>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'Ajouter une revue', new_restaurant_review_path(@restaurant) %>
+<% else %>
+  <p> Le restaurant n'a pas encore de revue. <%= link_to 'Ajouter', new_restaurant_review_path(@restaurant) %> la première revue</p>
+
+<% end %>
